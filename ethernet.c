@@ -263,10 +263,10 @@ unsigned char * rxbuf = RX_BUF;
 int index=0;
 
 ///////////////////////////////////
-/// Costom Value //////////////////
+/// Custom Value //////////////////
 ///////////////////////////////////
 #define BASE  (500) //msec
-#define DELARR_MAX 8	//  ÃÖ´ë ÅÃ¹èÇÔ
+#define DELARR_MAX 8	//  ìµœëŒ€ íƒë°°í•¨
 #define DEL_X 8
 #define DEL_Y 2	
 #define OFFICE_MAX  8
@@ -293,7 +293,7 @@ extern int led_cnt;
 extern int lcd_mod;
 extern int buzzer_tone;
 int led_cnt_value;
-int lcd_status=-1;		// ÇöÀç LCDÀÇ »óÅÂ Á¤º¸ 
+int lcd_status=-1;		// í˜„ì¬ LCDì˜ ìƒíƒœ ì •ë³´ 
 int lcdArr[5];
 int client_cnt=0;
 int fIndex=0;
@@ -359,7 +359,7 @@ void quake_status_lcd(){
 	Lcd_Draw_Vline(80,15,128,BLACK);
 	Lcd_Draw_Vline(120,15,128,BLACK);
 	
-	// »ç¹«½Ç ¹øÈ£
+	// ì‚¬ë¬´ì‹¤ ë²ˆí˜¸
 	Lcd_Printf(2,25, BLACK,WHITE,1,1,"%d", officeArr[0]);
 	Lcd_Printf(42,25, BLACK,WHITE,1,1,"%d", officeArr[1]);
 	Lcd_Printf(82,25, BLACK,WHITE,1,1,"%d", officeArr[2]);
@@ -400,7 +400,7 @@ void fire_status_lcd(){
 	Lcd_Draw_Vline(80,15,128,BLACK);
 	Lcd_Draw_Vline(120,15,128,BLACK);
 	
-	// »ç¹«½Ç ¹øÈ£
+	// ì‚¬ë¬´ì‹¤ ë²ˆí˜¸
 	Lcd_Printf(2,25, BLACK,WHITE,1,1,"%d", officeArr[0]);
 	Lcd_Printf(42,25, BLACK,WHITE,1,1,"%d", officeArr[1]);
 	Lcd_Printf(82,25, BLACK,WHITE,1,1,"%d", officeArr[2]);
@@ -457,9 +457,9 @@ void pop_delArr(int *arr, int num){
 	}
 	
 	if(cnt==0)
-		Uart1_Printf("\n%dÃş %dÃşÀÇ ÅÃ¹è°¡ ¾ø½À´Ï´Ù.", num/100, num%100);
+		Uart1_Printf("\n%dì¸µ %dì¸µì˜ íƒë°°ê°€ ì—†ìŠµë‹ˆë‹¤.", num/100, num%100);
 	else
-		Uart1_Printf("%\n%dÃş %dÈ£ ÅÃ¹è Àü´Ş ¿Ï·á.", num/100, num%100) ;
+		Uart1_Printf("%\n%dì¸µ %dí˜¸ íƒë°° ì „ë‹¬ ì™„ë£Œ.", num/100, num%100) ;
 }
 
 void notice_lcd(){
@@ -485,7 +485,7 @@ void office_status_lcd(){
 	Lcd_Draw_Vline(80,15,128,BLACK);
 	Lcd_Draw_Vline(120,15,128,BLACK);
 	
-	// »ç¹«½Ç ¹øÈ£
+	// ì‚¬ë¬´ì‹¤ ë²ˆí˜¸
 	Lcd_Printf(2,25, BLACK,WHITE,1,1,"%d", officeArr[0]);
 	Lcd_Printf(42,25, BLACK,WHITE,1,1,"%d", officeArr[1]);
 	Lcd_Printf(82,25, BLACK,WHITE,1,1,"%d", officeArr[2]);
@@ -495,7 +495,7 @@ void office_status_lcd(){
 	Lcd_Printf(82,85, BLACK,WHITE,1,1,"%d", officeArr[6]);
 	Lcd_Printf(122,85, BLACK,WHITE,1,1,"%d", officeArr[7]);
 	
-	// »ç¹«½Ç ¹® Àá±è ¿©ºÎ
+	// ì‚¬ë¬´ì‹¤ ë¬¸ ì ê¹€ ì—¬ë¶€
 	Lcd_Printf(2,43, BLACK,WHITE,1,1,"%c", door_status[door_status_arr[0]]);
 	Lcd_Printf(42,43, BLACK,WHITE,1,1,"%c", door_status[door_status_arr[1]]);
 	Lcd_Printf(82,43, BLACK,WHITE,1,1,"%c", door_status[door_status_arr[2]]);
@@ -506,7 +506,7 @@ void office_status_lcd(){
 	Lcd_Printf(122,103, BLACK,WHITE,1,1,"%c", door_status[door_status_arr[7]]);
 }
 
-void print_del_lcd(){			// LCD Ç¥Çö
+void print_del_lcd(){			// LCD í‘œí˜„
 	Lcd_Clr_Screen(WHITE);
 	Lcd_Printf(0,0, BLACK,WHITE,1,1,"%s", "Delivery Status");
 	Lcd_Draw_Hline(15,0,160,BLACK);
@@ -540,15 +540,15 @@ void lcd_refresh(int num){
 	Lcd_Printf(40,60, BLACK,WHITE,1,1,"%s", "START");
 		break;
 		
-	case 0: 						// ÅÃ¹è
+	case 0: 						// íƒë°°
 		print_del_lcd();
 		break;
 		
-	case 1:							// °øÁö»çÇ×
+	case 1:							// ê³µì§€ì‚¬í•­
 		notice_lcd();
 		break;
 		
-	case 2:							// »ç¹«½Ç ¹® Àá±è ÇöÈ²
+	case 2:							// ì‚¬ë¬´ì‹¤ ë¬¸ ì ê¹€ í˜„í™©
 		office_status_lcd();
 		break;
 	case 3:
@@ -568,7 +568,7 @@ void lcd_refresh(int num){
 		fire_warning_lcd();
 		break;
 	case 8:
-		fire_status_lcd(); // È­Àç À§Ä¡ Á¤º¸ 
+		fire_status_lcd(); // í™”ì¬ ìœ„ì¹˜ ì •ë³´ 
 		break;
 	}
 }
@@ -608,27 +608,27 @@ void loopback_tcps(char s, unsigned short port)
 			ch_status[s] = 2;
 		}
 
-		// uart ÀÔ·ÂÀ» ¹ŞÀ¸¸é 
+		// uart ì…ë ¥ì„ ë°›ìœ¼ë©´ 
 		if(Uart1_Rx_In)
 		{
 			Uart1_Rx_In = 0;
-			// ¹®ÀÚ ÀÔ·Â
+			// ë¬¸ì ì…ë ¥
 			if(Uart1_Rx_Data!='\r')
 			{
 				txbuf[index++]=Uart1_Rx_Data;
 				Uart1_Printf("%c",Uart1_Rx_Data);
 			}
-			// ÀÔ·Â ¿Ï·á ÈÄ ¿£ÅÍ Ä¥ °æ¿ì
+			// ì…ë ¥ ì™„ë£Œ í›„ ì—”í„° ì¹  ê²½ìš°
 			else
 			{
 				int i;
 				txbuf[index]='\0';
-				// ÀÔ·Â µ¥ÀÌÅÍ¿¡ µû¸¥ ¸Ş¼¼Áö ±¸ºĞ
+				// ì…ë ¥ ë°ì´í„°ì— ë”°ë¥¸ ë©”ì„¸ì§€ êµ¬ë¶„
 				
-				if(txbuf[0]=='@'){	// @ : ÅÃ¹è ÀÔ·Â
+				if(txbuf[0]=='@'){	// @ : íƒë°° ì…ë ¥
 					fIndex=(((int)txbuf[1]-'0')*10)+((int)txbuf[2]-'0');
 					nIndex=(((int)txbuf[3]-'0')*10)+((int)txbuf[4]-'0');
-					Uart1_Printf("\n%dÃş %dÈ£ ÅÃ¹è µî·Ï ¿Ï·á ",fIndex, nIndex);
+					Uart1_Printf("\n%dì¸µ %dí˜¸ íƒë°° ë“±ë¡ ì™„ë£Œ ",fIndex, nIndex);
 					delArrCheck(delArr, fIndex, nIndex);
 					for(i=0;i<client_cnt;i++)
 						send(i, txbuf, index);
@@ -637,12 +637,12 @@ void loopback_tcps(char s, unsigned short port)
 					Uart1_Printf("\n[send]: ");
 					index=0;
 				}
-				else if(txbuf[0]=='%'){	// ÅÃ¹è °Ë»ö
+				else if(txbuf[0]=='%'){	// íƒë°° ê²€ìƒ‰
 					print_delArr(delArr);
 					Uart1_Printf("\n[send]: ");
 					index=0;
 				}
-				else if(txbuf[0]=='^'){	// ÅÃ¹è Àü´Ş (º¸°üÇÔ¿¡¼­ »­)
+				else if(txbuf[0]=='^'){	// íƒë°° ì „ë‹¬ (ë³´ê´€í•¨ì—ì„œ ëºŒ)
 					fIndex=(((int)txbuf[1]-'0')*10)+((int)txbuf[2]-'0');
 					nIndex=(((int)txbuf[3]-'0')*10)+((int)txbuf[4]-'0');
 					pop_delArr(delArr, fIndex*100 + nIndex);
@@ -654,7 +654,7 @@ void loopback_tcps(char s, unsigned short port)
 					index=0;
 				}
 				
-				else if(txbuf[0]=='$'){			// ¼­¹ö->»ç¹«½Ç È£¼ö È£Ãâ
+				else if(txbuf[0]=='$'){			// ì„œë²„->ì‚¬ë¬´ì‹¤ í˜¸ìˆ˜ í˜¸ì¶œ
 					int check=checkOffice(txbuf);
 					if(check){
 						return;
@@ -669,7 +669,7 @@ void loopback_tcps(char s, unsigned short port)
 					index=0;
 				}
 				
-				else if(txbuf[0]=='#'){			// °øÁö»çÇ× Àü´Ş
+				else if(txbuf[0]=='#'){			// ê³µì§€ì‚¬í•­ ì „ë‹¬
 					for(i=0;i<client_cnt;i++)
 						send(i, txbuf, index);
 					//led_blink(6);
@@ -684,7 +684,7 @@ void loopback_tcps(char s, unsigned short port)
 				}
 								
 				
-				else if(txbuf[0]=='*'){			// »ç¹«½Ç ¹® Àá±İ ÀÛ¾÷ ¼öÇà
+				else if(txbuf[0]=='*'){			// ì‚¬ë¬´ì‹¤ ë¬¸ ì ê¸ˆ ì‘ì—… ìˆ˜í–‰
 					int num;
 					for(i=0;i<client_cnt;i++){
 						send(i, txbuf, index);
@@ -729,13 +729,13 @@ void loopback_tcps(char s, unsigned short port)
 			Uart1_Printf("\r[recv]: %s\n",rxbuf);
 			Uart1_Printf("[send]: ");
 			
-			if(rxbuf[0]=='#'){	// »ç¹«½Ç->¼­¹ö È£Ãâ
+			if(rxbuf[0]=='#'){	// ì‚¬ë¬´ì‹¤->ì„œë²„ í˜¸ì¶œ
 				strcpy(clientID, rxbuf);
 				lcd_mod=1;
 				client_call(1000);
 			}
 			
-			else	if(rxbuf[0]=='!'){	// »ç¹«½Ç->¼­¹ö ÅëÈ­ ¿¬°á
+			else	if(rxbuf[0]=='!'){	// ì‚¬ë¬´ì‹¤->ì„œë²„ í†µí™” ì—°ê²°
 				led_cnt==led_cnt_value;
 				lcd_mod=2;
 				buzzer_beep_stop();
@@ -743,14 +743,14 @@ void loopback_tcps(char s, unsigned short port)
 				Lcd_Printf(5,70, BLACK, WHITE, 2, 2, "%s", "CONNECTED...");
 			}
 			
-			else	if(rxbuf[0]=='?'){	// »ç¹«½Ç->¼­¹ö ÅëÈ­ Á¾·á (Å¬¶ó¿¡¼­ ²÷À½)
+			else	if(rxbuf[0]=='?'){	// ì‚¬ë¬´ì‹¤->ì„œë²„ í†µí™” ì¢…ë£Œ (í´ë¼ì—ì„œ ëŠìŒ)
 				lcd_mod=0;
 				buzzer_beep_stop();
 				Lcd_Clr_Screen(WHITE);
 				Lcd_Printf(5,70, BLACK, WHITE, 1, 1, "%s", "DISCONNECTED...");
 			}
 			
-			else	if(rxbuf[0]=='*'){	// »ç¹«½Ç ¹® Àá±è Ã¼Å© 
+			else	if(rxbuf[0]=='*'){	// ì‚¬ë¬´ì‹¤ ë¬¸ ì ê¹€ ì²´í¬ 
 				int i,num;
 				if(rxbuf[1]=='0'){
 					num = atoi(rxbuf+2);
@@ -763,7 +763,7 @@ void loopback_tcps(char s, unsigned short port)
 				lcd_status=2;
 				lcd_refresh(lcd_status);
 			}
-			else	if(rxbuf[0]=='&'){	// È­Àç °æº¸ 
+			else	if(rxbuf[0]=='&'){	// í™”ì¬ ê²½ë³´ 
 				int i;
 				TIM2_Interrupt_Enable(1, 150);
 				led_blink(1000);
@@ -782,7 +782,7 @@ void loopback_tcps(char s, unsigned short port)
 
 			}
 			
-			else	if(rxbuf[0]=='~'){	// ÁöÁø °æº¸ 
+			else	if(rxbuf[0]=='~'){	// ì§€ì§„ ê²½ë³´ 
 				strcpy(ID_buf, rxbuf);
 				quake_check(ID_buf);
 				lcd_refresh(lcd_status);
@@ -803,7 +803,7 @@ void loopback_tcps(char s, unsigned short port)
 			quake_stat_flag=1;
 		}
 		
-		// 1 : ¹Ş´Â °æ¿ì
+		// 1 : ë°›ëŠ” ê²½ìš°
 		if(call_flag==1){
 			int i;
 			led_cnt=1000;
@@ -814,7 +814,7 @@ void loopback_tcps(char s, unsigned short port)
 			call_flag=0;
 		}
 		
-		// 2 : ²÷´Â °æ¿ì
+		// 2 : ëŠëŠ” ê²½ìš°
 		else if(call_flag==2){
 			int i;
 			led_cnt=1000;
@@ -825,7 +825,7 @@ void loopback_tcps(char s, unsigned short port)
 			call_flag=0;			
 		}
 		
-		// È­Àç °æº¸ ²ô´Â °æ¿ì
+		// í™”ì¬ ê²½ë³´ ë„ëŠ” ê²½ìš°
 		if(fire_flag==1){
 			int i;
 			buzzer_beep_stop();
@@ -837,7 +837,7 @@ void loopback_tcps(char s, unsigned short port)
 				fire_status_arr[i]=0;
 		}
 		
-		// ÁöÁø °æº¸ ²ô´Â °æ¿ì 
+		// ì§€ì§„ ê²½ë³´ ë„ëŠ” ê²½ìš° 
 		if(quake_flag==1){
 			int i;
 			buzzer_beep_stop();
